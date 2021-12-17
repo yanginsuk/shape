@@ -1,48 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .box{
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background-color: skyblue;
-            top: 50%;
-            left: 50%;
-        }
-
-    </style>
-</head>
-<body>
-    <div class="box"></div>
-
-    <script>
-        document.addEventListener('mousemove', function(e) {
-            const box = document.createElement('div');
-            box.style.position = 'absolute';
-            box.style.width = '100px';
-            box.style.height = '100px';
-            box.style.borderRadius = '10px';
-            box.style.backgroundColor = `rgb(${Math.random()*255}`;
-            box.style.top = `${e.clientY-50}px`;
-            box.style.left = `${e.clientX-50}px`;
-
-            document.body.appendChild(box);
-        });
-         const box = document.querySelector('.box');
-         let rotate = 0;
-
-         function boxRotate() {
-         box.style.transform = `rotate(${rotate}deg)`;
-          rotate = rotate + 5;
-           rotate += 5;
-            requestAnimationFrame(boxRotate);
-         }
-         boxRotate();
-    </script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            /* .box {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                top: 50%;
+                left: 50%;
+                background-color: lightskyblue;
+            } */
+        </style>
+    </head>
+    <body>
+        <!-- <div class="box"></div> -->
+    
+        <script>
+            document.addEventListener('mousemove', function(e) {
+                const box = document.createElement('div');
+    
+                box.style.position = 'absolute';
+                let size = Math.random()*10 + 50;
+                box.style.width = `${size}px`;
+                box.style.height = `${size}px`;
+                box.style.borderRadius = '20px';
+                box.style.backgroundColor = `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
+                box.style.top = `${e.clientY-(size/2)}px`;
+                box.style.left = `${e.clientX-(size/2)}px`;
+    
+                document.body.appendChild(box);
+            });
+    
+            let rotate=0;
+    
+            function boxRotate() {
+                let boxes = document.querySelectorAll('div');
+                rotate += 5;
+                boxes.forEach(function(box) {
+                    box.style.transform = `rotate(${rotate}deg)`;
+                });
+                requestAnimationFrame(boxRotate);
+            };
+            boxRotate();
+        </script>
+    
+    </body>
 </html>
